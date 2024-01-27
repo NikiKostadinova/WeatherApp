@@ -10,7 +10,40 @@
 
 <body>
 
-    <div class="card">
+    <form id="search-form">
+        <div class="card">
+            <div class="search">
+                <input type="text" id="search-box" placeholder="Enter City Name" spellcheck="false">
+                <button><img src="images/search.png"></button>
+            </div>
+            <div class="error">
+                <p>Invalid City Name</p>
+            </div>
+            <div class="weather">
+                <img src="images/rain.png" class="weather-icon">
+                <h1 class="temp">22°C</h1>
+                <h2 class="city">New York</h2>
+                <div class="deatails">
+                    <div class="col">
+                        <img src="images/humidity.png">
+                        <div>
+                            <p class="humidity">50%</p>
+                            <p>Humidity</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="images/wind.png">
+                        <div>
+                            <p class="wind">15km/h</p>
+                            <p>Wind Speed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- <div class="card">
         <div class="search">
             <input type="text" placeholder="enter city name" spellcheck="false">
             <button><img src="images/search.png"></button>
@@ -39,13 +72,16 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script>
+    </div> -->
+    <script src="script.js"></script>
+    
+    <!-- <script>
+
 
         const apiKeyWeather = "90809f09fdfe9032b75c0a3f85ed0b77";
         const apiUrlWeather = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-      
+
 
         const searchBox = document.querySelector(".search input");
         const searchBtn = document.querySelector(".search button");
@@ -92,7 +128,7 @@
         const apiKeyImage = "J93NRAuhsVT4LLk2bwVmMkx5SbMknue1VakEfEQYsn0";
         const apiUrlImage = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}`;
 
-        async function searchImage(){
+        async function searchImage() {
 
             keyWordImage = searchBox.value;
             const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}&client_id=${apiKeyImage}`;
@@ -102,9 +138,9 @@
             // console.log(data);
 
             const results = data.results;
-            const image  = results[0].urls.full;
+            const image = results[0].urls.full;
             document.body.style.backgroundImage = `url(${image})`;
-            
+
             // results.map((result) => {
             //     const image  = result.urls.full;
             //     console.log(image)
@@ -120,7 +156,7 @@
         })
 
 
-    </script>
+    </script> -->
 
 </body>
 
