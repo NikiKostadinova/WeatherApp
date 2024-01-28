@@ -36,7 +36,7 @@ async function checkWeather(city) {
         document.querySelector(".weather").style.display = "block";
         document.querySelector(".error").style.display = "none";
 
-        // console.log(data);
+        console.log(data);
 
     }
 
@@ -55,7 +55,7 @@ async function searchImage() {
     const response = await fetch(url);
     const data = await response.json();
 
-    console.log(data);
+    // console.log(data);
 
     const results = data.results;
     const image = results[0].urls.full;

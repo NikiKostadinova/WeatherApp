@@ -10,13 +10,15 @@ body {
     /* width: auto;
     height: 800px; */
     /* background: linear-gradient(135deg, #00feba, #5b548a); */
-   
+
     background-image: url(/images/noaa-kcvlb727mn8-unsplash.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     height: 600px;
+    background-attachment: fixed;
     
+
 
 }
 
@@ -26,10 +28,16 @@ body {
     /* background: linear-gradient(135deg, #00feba, #5b548a); */
     background-color: rgba(62, 142, 138, 0.4);
     color: #fff;
-    margin: 100px auto 0;
+    margin: 70px auto 0;
     border-radius: 20px;
-    padding: 80px 35px;
+    padding: 40px 35px 80px;
     text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 30px;
+    margin: 0 0 24px;
 }
 
 .search {
@@ -87,8 +95,8 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    margin-top: 50px;  
-       
+    margin-top: 50px;
+
 
 }
 
@@ -118,8 +126,9 @@ body {
 
 .error {
     text-align: left;
+    color: #ebfffc;
     margin-left: 10px;
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 10px;
     display: none;
 }
