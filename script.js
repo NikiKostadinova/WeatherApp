@@ -6,6 +6,8 @@ const searchForm = document.getElementById("search-form");
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
+const card = document.querySelector(".card");
+
 let localTime = 0;
 
 async function checkWeather(city) {
@@ -70,6 +72,7 @@ async function searchImage() {
         document.body.style.backgroundImage = `url(${image})`;
     }else{
         document.body.style.backgroundImage = "url(/images/pxfuel.jpg)";
+        card.style.backgroundColor = "rgba(91, 102, 101, 0.4)"
 
     }
 
