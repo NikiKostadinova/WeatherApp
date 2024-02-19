@@ -8,7 +8,9 @@ const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 const card = document.querySelector(".card");
 
-let localTime = 0;
+
+let isDay = true;
+
 
 async function checkWeather(city) {
     const response = await fetch(apiUrlWeather + city + `&appid=${apiKeyWeather}`);
@@ -43,11 +45,15 @@ async function checkWeather(city) {
         const nowInLocalTime = Date.now()  + 1000 * timeZone;
         const time = new Date(nowInLocalTime).toISOString().slice(11, 19);
         const timeArr = time.split(":");
-        localTime = timeArr[0];
+        const localTime = timeArr[0];
         console.log(localTime);
 
         console.log(data);
-        
+
+        if(localTime <= 6 || localTime >= 18){
+            isDay = false;
+        }
+        // console.log(isDay)
 
     }
 
@@ -56,16 +62,22 @@ async function checkWeather(city) {
 let keyWordImage = "";
 let page = 1;
 
+
+
 const apiKeyImage = "J93NRAuhsVT4LLk2bwVmMkx5SbMknue1VakEfEQYsn0";
 const apiUrlImage = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}`;
 
 async function searchImage() {
 
-    if(localTime >= 6 && localTime <= 18){
+
+    console.log(isDay);
+
+    if(isDay){
         keyWordImage = searchBox.value;
         const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}&client_id=${apiKeyImage}`;
         const response = await fetch(url);
         const data = await response.json();   
+        console.log(data)
           
         const results = data.results;
         const image = results[0].urls.full;
