@@ -51,7 +51,7 @@ async function checkWeather(city) {
         console.log(data);
 
         if(localTime <= 6 || localTime >= 18){
-            isDay = false;
+           return isDay = false;
         }
         // console.log(isDay)
 
