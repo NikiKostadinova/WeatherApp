@@ -95,6 +95,7 @@ async function searchImage() {
 searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     checkWeather(searchBox.value);
+    searchBox.value = "";
     page = 1;
     searchImage();
 })
