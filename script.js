@@ -6,6 +6,7 @@ const searchForm = document.getElementById("search-form");
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
+let localTime = 0;
 
 async function checkWeather(city) {
     const response = await fetch(apiUrlWeather + city + `&appid=${apiKeyWeather}`);
@@ -36,7 +37,15 @@ async function checkWeather(city) {
         document.querySelector(".weather").style.display = "block";
         document.querySelector(".error").style.display = "none";
 
+        const timeZone = data.timezone;
+        const nowInLocalTime = Date.now()  + 1000 * timeZone;
+        const time = new Date(nowInLocalTime).toISOString().slice(11, 19);
+        const timeArr = time.split(":");
+        localTime = timeArr[0];
+        console.log(localTime);
+
         console.log(data);
+        
 
     }
 
@@ -50,16 +59,21 @@ const apiUrlImage = `https://api.unsplash.com/search/photos?page=${page}&query=$
 
 async function searchImage() {
 
-    keyWordImage = searchBox.value;
-    const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}&client_id=${apiKeyImage}`;
-    const response = await fetch(url);
-    const data = await response.json();
+    if(localTime >= 6 && localTime <= 18){
+        keyWordImage = searchBox.value;
+        const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}&client_id=${apiKeyImage}`;
+        const response = await fetch(url);
+        const data = await response.json();   
+          
+        const results = data.results;
+        const image = results[0].urls.full;
+        document.body.style.backgroundImage = `url(${image})`;
+    }else{
+        document.body.style.backgroundImage = "url(/images/pxfuel.jpg)";
 
-    // console.log(data);
+    }
 
-    const results = data.results;
-    const image = results[0].urls.full;
-    document.body.style.backgroundImage = `url(${image})`;
+   
 
     // results.map((result) => {
     //     const image  = result.urls.full;
