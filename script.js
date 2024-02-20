@@ -6,6 +6,8 @@ const searchForm = document.getElementById("search-form");
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
+const card = document.querySelector(".card");
+
 let localTime = 0;
 
 async function checkWeather(city) {
@@ -37,14 +39,13 @@ async function checkWeather(city) {
         document.querySelector(".weather").style.display = "block";
         document.querySelector(".error").style.display = "none";
 
+
         const timeZone = data.timezone;
         const nowInLocalTime = Date.now()  + 1000 * timeZone;
         const time = new Date(nowInLocalTime).toISOString().slice(11, 19);
         const timeArr = time.split(":");
         localTime = timeArr[0];
-       
-        
-
+      
     }
 
 }
