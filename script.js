@@ -6,6 +6,7 @@ const searchForm = document.getElementById("search-form");
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
+let localTime = 0;
 
 async function checkWeather(city) {
     const response = await fetch(apiUrlWeather + city + `&appid=${apiKeyWeather}`);
@@ -36,7 +37,13 @@ async function checkWeather(city) {
         document.querySelector(".weather").style.display = "block";
         document.querySelector(".error").style.display = "none";
 
-        console.log(data);
+        const timeZone = data.timezone;
+        const nowInLocalTime = Date.now()  + 1000 * timeZone;
+        const time = new Date(nowInLocalTime).toISOString().slice(11, 19);
+        const timeArr = time.split(":");
+        localTime = timeArr[0];
+       
+        
 
     }
 
@@ -48,36 +55,38 @@ let page = 1;
 const apiKeyImage = "J93NRAuhsVT4LLk2bwVmMkx5SbMknue1VakEfEQYsn0";
 const apiUrlImage = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}`;
 
-async function searchImage() {
+
+async function searchImage() {   
 
     keyWordImage = searchBox.value;
-    const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}&client_id=${apiKeyImage}`;
+    
+    const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyWordImage}&client_id=${apiKeyImage}`;  
     const response = await fetch(url);
-    const data = await response.json();
-
-    // console.log(data);
-
+    const data = await response.json();    
     const results = data.results;
     const image = results[0].urls.full;
-    document.body.style.backgroundImage = `url(${image})`;
 
-    // results.map((result) => {
-    //     const image  = result.urls.full;
-    //     console.log(image)
-    //     document.body.style.backgroundImage = `url(${image})`;
-    // })
+    if(localTime >= 6 && localTime <= 18){    
+                  
+        document.body.style.backgroundImage = `url(${image})`;
+    }else{
+        document.body.style.backgroundImage = "url(/images/pxfuel.jpg)";
+    }
+    searchBox.value = "";
+
 
 }
 
-// searchBtn.addEventListener("click", () => {
-//     checkWeather(searchBox.value);
-//     page = 1;
-//     searchImage();
-// })
 
 searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    checkWeather(searchBox.value);
+    checkWeather(searchBox.value)
+        .then(() => {
+            searchImage();
+        })
+        .catch((error) => {
+            console.error("Error checking weather:", error);
+        });
+
     page = 1;
-    searchImage();
-})
+});
