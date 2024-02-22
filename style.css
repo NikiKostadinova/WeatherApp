@@ -27,6 +27,7 @@ body {
     max-width: 470px;
     /* background: linear-gradient(135deg, #00feba, #5b548a); */
     background-color: rgba(62, 142, 138, 0.4);
+    box-shadow: 0px 0px 50px -10px rgba(200, 233, 225, 0.900);
     
 
     color: #fff;
@@ -78,7 +79,10 @@ h2 {
 
 .weather-icon {
     width: 170px;
-    margin-top: 30px;
+    margin-top: 30px;   
+    /* border-radius: 50%; */
+    /* box-shadow: 0px 0px 50px -10px rgba(200, 233, 225, 0.900); */
+
 }
 
 .weather h1 {
